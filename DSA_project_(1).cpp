@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
 using namespace std;
-
+//...linked list node
 struct Node{
 	string name ;
 	string phone_number;
@@ -11,7 +11,47 @@ struct Node{
 };
 
 Node* head = NULL;
-//....1st function
+
+//...BST Node
+struct BSTNode{
+	string name ;
+	string phone_number;
+	string email;
+	BSTNode* left;
+	BSTNode* right;
+	
+};
+//...root pointer 
+BSTNode* root = NULL;
+
+BSTNode* createBSTNode(string n, string number, string e){
+	BSTNode* newNode = new BSTNode();
+	newNode->name = n;
+	newNode->phone_number = number;
+	newNode->email = e;
+	newNode->left = NULL;
+	newNode->right = NULL;
+	
+	return newNode;
+}
+
+BSTNode* insertBST(BSTNode* root, string n,string number, string e ){
+	if(root == NULL){
+		return createBSTNode(n,number,e);
+	}
+	if(name<root->name)
+		root->left = insertBSTNode(root->left,n,number,e);
+	else if(name>root->name)
+	root->right = insertBSTNode(root->right, n , number ,e);
+	
+	else
+	cout<<"Duplicate contact name not allowed!!!"<<endl;
+	
+	return root;
+	
+}
+
+
 void addContact( string n, string number, string e){
 	Node* newNode = new Node();
 	newNode->name = n;
@@ -31,5 +71,9 @@ void addContact( string n, string number, string e){
 		
 	}
 	cout<<"Contacts Added Successfully!!!"<<endl;
+	
+	// when u add a contact , first it will added in linked list and then in BSTNode
+		root = insertBSTNode(root , n,e);
+		cout<<"Contact Added to  BST successfully!!!"<<endl;
 	
 }
