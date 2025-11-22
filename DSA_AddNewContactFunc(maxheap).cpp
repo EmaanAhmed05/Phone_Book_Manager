@@ -52,33 +52,6 @@ BSTNode* insertBST(BSTNode* root, string n,string number, string e ){
 	
 }
 
-
-void addContact( string n, string number, string e){
-	Node* newNode = new Node();
-	newNode->name = n;
-	newNode->phone_number = number;
-	newNode->email = e;
-	
-	if (head == NULL){
-	head = newNode;
-	newNode->next = head;
-	newNode->prev = head;
-	}
-	else{
-		Node* last = head->prev;
-		newNode->next = head;
-		newNode->prev = last;
-		last->next = newNode;
-		head->prev = newNode;
-	}
-	cout<<"Contacts Added Successfully!!!"<<endl;
-	
-	// when u add a contact , first it will added in linked list and then in BSTNode
-		root = insertBST(root , n,number,e);
-		cout<<"Contact Added to  BST successfully!!!"<<endl;
-	
-}
-
 void displayLinkedList(){
 if (head == NULL){
 	cout<<"No Contacts Found!!!"<<endl;
@@ -216,23 +189,90 @@ string deleteMax(){
 	maximumHeap(0);
 	return maxVal;
 }
+void addContact( string n, string number, string e){
+	Node* newNode = new Node();
+	newNode->name = n;
+	newNode->phone_number = number;
+	newNode->email = e;
+	
+	if (head == NULL){
+	head = newNode;
+	newNode->next = head;
+	newNode->prev = head;
+	}
+	else{
+		Node* last = head->prev;
+		newNode->next = head;
+		newNode->prev = last;
+		last->next = newNode;
+		head->prev = newNode;
+	}
+	cout<<"Contacts Added Successfully!!!"<<endl;
+	
+	// when u add a contact , first it will added in linked list and then in BSTNode
+		root = insertBST(root , n,number,e);
+		cout<<"Contact Added to  BST successfully!!!"<<endl;
+	insertMinHeap(n);
+	insertMinHeap(n);
+	
+}
+
 int main(){
-	//add some contacts to check 
-	addContact("Ali","   00000000000 ","ali@example.com");
-	addContact("Sara","  00000000000 ","sara@example.com");
-	addContact("Ahmed"," 00000000000 ","ahmed@example.com");
+	 int choice;
+	do{
+		cout<<"\n____Menu____\n";
+	cout<<"\n1. Add Contacts \n";
+	cout<<"\n2. Dislay All Contacts \n";
+	cout<<"\n3. Search Contacts \n";
+	cout<<"\n4. Exit \n";
+	cout<<"\n Enter Choice: \n";
+	cin>>choice;
+	cin.ignore();
+
+		if(choice == 1){
+			string n,p,e;
+	
+	cout<<"Enter name: "<<endl;
+	getline(cin,n);
+	
+	cout<<"Enter phone number: "<<endl;
+	getline(cin, p);
+	
+	cout<<"Enter Email: "<<endl;
+	getline(cin,e);
+	
+	addContact(n,p,e);	
+	}
+		else if(choice == 2){
+		displayLinkedList();
+		cout<<"\nContacts (BST): \n ";
+		inorderBST(root);
+	}
+		else if(choice == 3){
+		string searchName;
+		cout<<"Enter name to Search: "<<endl;
+		getline(cin, searchName);
+		searchContact(root, searchName);
+	}
+		else if (choice == 4){
+		cout<<"Existing program!!!\n"<<endl;
+	}
+	else{
+		cout<<"Invalid Choice!!\n"<<endl;
+	}}
+	while(choice != 4);
 	
 	 displayLinkedList();
 	
 	cout<<"\n Contacts (BST):\n"<<endl;
 	inorderBST(root);
 	
-	cout<<"\n Searcing for 'Sara' : \n";
-	searchContact(root, "Sara");
+
 	return 0 ;
 }
 
 	       
+
 
 
 
