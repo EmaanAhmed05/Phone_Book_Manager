@@ -49,7 +49,6 @@ BSTNode* insertBST(BSTNode* root, string n,string number, string e ){
 	cout<<"Duplicate contact name not allowed!!!"<<endl;
 	
 	return root;
-	
 }
 
 void displayLinkedList(){
@@ -77,7 +76,6 @@ void inorderBST(BSTNode* root){
 		    << "Email:"<<root->email<<endl;
 		    
 		    inorderBST(root->right);}
-	
 	}
 //search contacts in Bst(recursion is also used here to search )
 void searchContact(BSTNode* root , string name){
@@ -110,8 +108,6 @@ return 2*i+1;//gives inddex of left child of node
 int right(int i){
 return 2*i+2;//gives index of right child of node
 }
-
-
      int heapSizeMin(){
               return minHeap.size();
                    }
@@ -213,10 +209,8 @@ void addContact( string n, string number, string e){
 		root = insertBST(root , n,number,e);
 		cout<<"Contact Added to  BST successfully!!!"<<endl;
 	insertMinHeap(n);
-	insertMinHeap(n);
-	
+	insertMinHeap(n);	
 }
-
 int main(){
 	 int choice;
 	do{
@@ -263,15 +257,13 @@ int main(){
 	while(choice != 4);
 	
 	 displayLinkedList();
-	
 	cout<<"\n Contacts (BST):\n"<<endl;
 	inorderBST(root);
-	
-
 	return 0 ;
 }
 
 	       
+
 
 
 
