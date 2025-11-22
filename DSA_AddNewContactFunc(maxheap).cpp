@@ -168,7 +168,7 @@ void insertMinHeap(string x){
 	minHeap.push_back(x);
 	int i = heapSizeMin()-1;
 	
-	while(i>0&& minHeap[parent(i)]<minHeap[i]){
+	while(i>0&& minHeap[parent(i)]>minHeap[i]){
 		swap(minHeap[i], minHeap[parent(i)]);
 		i = parent(i);
 	}
@@ -186,7 +186,7 @@ string deleteMin(){
 //Maximum Heap
 void maximumHeap(int i){
 	int l = left(i);
-	int r = left(i);
+	int r = right(i);
 	int largest = i;
 	
 	if(l<heapSizeMax()&& maxHeap[l]> maxHeap[largest])
@@ -233,3 +233,4 @@ int main(){
 }
 
 	       
+
