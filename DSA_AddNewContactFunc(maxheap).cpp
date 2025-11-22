@@ -189,9 +189,9 @@ void maximumHeap(int i){
 	int r = right(i);
 	int largest = i;
 	
-	if(l<heapSizeMax()&& maxHeap[l]> maxHeap[largest])
+	if(l<heapSizeMax()&& maxHeap[l]< maxHeap[largest])
 	largest = l;//if left child exists and left child is alphabetically bigger then update te largest
-	if(r<heapSizeMax()&& maxHeap[r]> maxHeap[largest])
+	if(r<heapSizeMax()&& maxHeap[r]< maxHeap[largest])
 	largest = r;//same logic for right
 	if(largest !=i){//if parent is NOT largest then swap the parent with largest
 		swap(maxHeap[i],maxHeap[largest]);
@@ -233,4 +233,5 @@ int main(){
 }
 
 	       
+
 
