@@ -79,7 +79,7 @@ void addContact( string n, string number, string e){
 	
 }
 
-void displayLnkedList(){
+void displayLinkedList(){
 if (head == NULL){
 	cout<<"No Contacts Found!!!"<<endl;
 	return;
@@ -222,7 +222,7 @@ int main(){
 	addContact("Sara","  00000000000 ","sara@example.com");
 	addContact("Ahmed"," 00000000000 ","ahmed@example.com");
 	
-	void displayLinkedList();
+	 displayLinkedList();
 	
 	cout<<"\n Contacts (BST):\n"<<endl;
 	inorderBST(root);
@@ -231,4 +231,5 @@ int main(){
 	searchContact(root, "Sara");
 	return 0 ;
 }
+
 	       
