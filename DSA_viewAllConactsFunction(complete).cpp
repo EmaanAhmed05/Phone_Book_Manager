@@ -311,9 +311,6 @@ int main(){
 	addContact(n,p,e);	
 	}
 	else if(choice == 2){
-		/*displayLinkedList();
-		cout<<"\nContacts (BST): \n ";
-		inorderBST(root);*/
 		viewAllContacts();
 	}
 	else if(choice == 3){
@@ -332,5 +329,6 @@ int main(){
 	while(choice != 4);
 	
 	return 0 ;
+
 
 }
