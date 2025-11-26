@@ -247,7 +247,7 @@ void saveContactsToFile(){
 void loadContactsFromFile(){
 	ifstream file("contacts.txt");
 	if(!file){
-		cout<<"No contacts file found. Starting fresh.\n";
+		cout<<"_____Phone Book Initialize_____\n";
 		return;
 	}
 
@@ -332,3 +332,4 @@ int main(){
 
 
 }
+
