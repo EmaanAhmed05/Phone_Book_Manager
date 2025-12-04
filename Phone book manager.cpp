@@ -12,14 +12,14 @@ using namespace std;
     queue<string> reminders;
     unordered_map<string, int> callCount;      // store number of calls per contact
     priority_queue<pair<int,string>> callHeap; // max heap (count, name)
-//trim function
+// trim function
 string trim(const string str){
 	string s = str;
 	s.erase(s.begin(),find_if(s.begin(),s.end(),[](unsigned char ch){return !isspace(ch);}));
     s.erase(find_if(s.rbegin(), s.rend(), [](unsigned char ch){ return !isspace(ch); }).base(), s.end());
 	return s;
 }
-//...linked list node
+// linked list node
 struct Node{
 	string name ;
 	string phone_number;
@@ -30,7 +30,7 @@ struct Node{
 
 Node* head = NULL;
 
-//...BST Node
+// BST Node
 struct BSTNode{
 	string name ;
 	string phone_number;
@@ -39,7 +39,7 @@ struct BSTNode{
 	BSTNode* right;
 	
 };
-//...root pointer 
+// root pointer 
 BSTNode* root = NULL;
 
 BSTNode* createBSTNode(string n, string number, string e){
@@ -52,7 +52,7 @@ BSTNode* createBSTNode(string n, string number, string e){
 	
 	return newNode;
 }
-//inserting contacts into BST...(recursion is used here..recursive call to left or right to add a new contacr in correct orderor position )
+// inserting contacts into BST(recursion is used here,recursive call to left or right to add a new contacr in correct orderor position )
 BSTNode* insertBST(BSTNode* root, string n,string number, string e ){
 	if(root == NULL){
 		return createBSTNode(n,number,e);
@@ -69,8 +69,6 @@ BSTNode* insertBST(BSTNode* root, string n,string number, string e ){
 	
 }
 
-
-
 void displayLinkedList(){
 if (head == NULL){
 	cout<<"No Contacts Found!!!"<<endl;
@@ -86,7 +84,7 @@ do{
 	
 }while(temp!= head);}
 
-//this function will display ontacts in alphabatical order(recursion is used to traverse the tree in correct order)
+// this function will display ontacts in alphabatical order(recursion is used to traverse the tree in correct order)
 void inorderBST(BSTNode* root){
 	//will vist left tree first , then current node , then right subtree
 	if(root!=NULL){
@@ -98,13 +96,13 @@ void inorderBST(BSTNode* root){
 		    inorderBST(root->right);}
 	
 	}
-//search contacts in Bst(recursion is also used here to search )
+// search contacts in Bst(recursion is also used here to search )
 void searchContact(BSTNode* root , string name){
 	if (root == NULL){
 		cout<<"Contact not Found!!"<<endl;
 		return;
 	}
-	if (name==root->name){//if current node is equall to the existing node in BST then
+	if (name==root->name){// if current node is equall to the existing node in BST then
 		cout<<"Contact Found!!"<<endl;
 		cout<<"Name  : "<<root->name;
 		cout<<"Phone : "<<root->phone_number;
@@ -117,19 +115,19 @@ void searchContact(BSTNode* root , string name){
 	}
 }
 
-//Heap Function
-vector<string> minHeap;//this will give us he alphabetically first contact quickly
+// Heap Function
+vector<string> minHeap;// this will give us he alphabetically first contact quickly
 vector<string> maxHeap;
 
 int parent(int i){
-return(i-1)/2;//gives index of parent of node 
+return(i-1)/2;// gives index of parent of node 
  }
 int left(int i){
-return 2*i+1;//gives inddex of left child of node
+return 2*i+1;// gives inddex of left child of node
 }
 int right(int i){
-return 2*i+2;//gives index of right child of node
-}
+return 2*i+2;// gives index of right child of node
+}  
 
 int heapSizeMin(){
 return minHeap.size();
@@ -139,18 +137,18 @@ int heapSizeMax(){
 }
 
 
-//Mini Heap
+// Mini Heap
 void minimumHeap(int i){
 	int l = left(i);
 	int r = right(i);
 	int smallest = i;
-	//will check if left or right child is smaller then the current node
+	// will check if left or right child is smaller then the current node
 	if (l<heapSizeMin() && minHeap[l]< minHeap[smallest])
 	smallest = l;
 	if (r<heapSizeMin() && minHeap[r]< minHeap[smallest])
 	smallest = r;
 	
-	//if smallest value is not thr parent then swap parent and child
+	// if smallest value is not thr parent then swap parent and child
 	if(smallest != i){
 		swap(minHeap[i], minHeap[smallest]);
 		minimumHeap(smallest);
@@ -176,17 +174,17 @@ string deleteMin(){
 }
 
 
-//Max Heap
+// Max Heap
 void maximumHeap(int i){
 	int l = left(i);
 	int r = right(i);
 	int largest = i;
 	
 	if(l <heapSizeMax()&& maxHeap[l]< maxHeap[largest])
-	largest = l;//if left child exists and left child is alphabetically bigger then update te largest
+	largest = l;// if left child exists and left child is alphabetically bigger then update te largest
 	if(r<heapSizeMax()&& maxHeap[r]< maxHeap[largest])
-	largest = r;//same logic for right
-	if(largest !=i){//if parent is NOT largest then swap the parent with largest
+	largest = r;// same logic for right
+	if(largest !=i){// if parent is NOT largest then swap the parent with largest
 		swap(maxHeap[i],maxHeap[largest]);
 		maximumHeap(largest);
 	}	
@@ -241,13 +239,13 @@ void addContact(string n, string number, string e, bool showMessage = true){
 }
 
 void saveContactsToFile(){
-	ofstream file("contacts.txt");//will open or creates the file 
+	ofstream file("contacts.txt");// will open or creates the file 
 	if(!file){
 		cout<<"Error opening file to save contacts!!\n";
 		return;
 	}
 	if(head == NULL) 
-	return;//if emty , nothing to save
+	return;// if emty,nothing to save
 	
 	Node* temp = head;
 	do{
@@ -264,7 +262,7 @@ void saveContactsToFile(){
 void loadContactsFromFile(){
     ifstream file("contacts.txt");
     if(!file){
-        cout<<"Phone Book Initialized\n";
+        cout<<"PHONE BOOK\n";
         return;
     }
 
@@ -282,14 +280,14 @@ void loadContactsFromFile(){
     }
 }
 
-//.............VIEW ALL CONTACTS FUNCTION (2)...........
+// VIEW ALL CONTACTS FUNCTION
 void viewAllContacts(){
 	if(head==NULL){
 		cout<<"No Contacts Found!"<<endl;
 	}
 	else{
 		Node* temp = head;
-		cout<<"\n____Contacts(Linked List)____\n";
+		cout<<"\nContacts(Linked List)\n";
 		do{
 			cout<<"Name  : "<<temp->name<<endl;
 			cout<<"Phone : "<<temp->phone_number<<endl;
@@ -300,10 +298,10 @@ void viewAllContacts(){
 		}
 		while(temp!= head);
 	}
-	cout<<"\n____Contacts (BST_order)____\n";
+	cout<<"\nContacts (BSTorder)\n";
 	inorderBST(root);
 }
-//..............EDIT CONTACTS FUNCTION(3)...............
+// EDIT CONTACTS FUNCTION
 
 stack<Node> undoStack;
 Node* searchLinkedList(Node* head, const string& key)
@@ -444,7 +442,7 @@ void editContact() {
     saveContactsToFile();
     cout << "Contact updated successfully!!!\n";
 }
-//..................DELETE CONTACT FUNCTION (4)....................
+// DELETE CONTACT FUNCTION
 
 void deleteContact(){
     string key;
@@ -458,7 +456,7 @@ void deleteContact(){
         cout << "Contact not found!\n";
         return;
     }
- // Save old data for undo
+    // Save old data for undo
     undoStack.push(*temp);
 
     string delName = temp->name;
@@ -476,7 +474,7 @@ void deleteContact(){
     }
 
     delete temp;
- // Removing from BST also
+    // Removing from BST also
     root = deleteFromBST(root, delName);
  
     // Update file after deletion
@@ -484,7 +482,7 @@ void deleteContact(){
 
     cout << "Contact deleted successfully!\n";
 }
-//...................UNDO LAST OPERATION (5).....................
+// UNDO LAST OPERATION 
 
 void undoLastOperation() {
 
@@ -520,7 +518,7 @@ void undoLastOperation() {
     saveContactsToFile();
     cout << "Undo successful! (Contact restored)\n";
 }
-// ===== REMINDER SYSTEM =====
+// REMINDER SYSTEM
 void showReminderMenu() {
     cout << "\n=== Reminder System ===" << endl;
     cout << "1. Add New Reminder" << endl;
@@ -559,7 +557,6 @@ void loadRemindersFromFile() {
     }
 
     file.close();
-    cout << "Reminders loaded successfully!\n";
 }
 
 void reminderSystem() {
@@ -603,7 +600,7 @@ void reminderSystem() {
                 if (reminders.empty()) {
                     cout << "No reminders available!" << endl;
                 } else {
-                    cout << "\n=== All Reminders ===" << endl;
+                    cout << "\n ALL REMINDERS" << endl;
                     queue<string> temp = reminders;
                     int count = 1;
                     while (!temp.empty()) {
@@ -660,7 +657,7 @@ void displayTopContacts() {
     // make a temporary copy (so original heap stays unchanged)
     priority_queue<pair<int,string>> temp = callHeap;
 
-    cout << "\n===== TOP CONTACTS (MOST CALLED) =====\n";
+    cout << "\n TOP CALLED CONTACTS \n";
 
     while (!temp.empty()) {
         auto top = temp.top();
@@ -669,14 +666,14 @@ void displayTopContacts() {
     }
 }
 int main(){
-	//load contacts and reminders from the file 
+	// load contacts and reminders from the file 
 	loadContactsFromFile();
 	loadRemindersFromFile();
 
 	
 	int choice;
 	do{
-	cout<<"\n____Menu____\n";
+	cout<<"\n SELECT WHAT YOU WANT FROM THE MENU BELOW \n";
 	cout<<"\n1. Add Contacts \n";
 	cout<<"\n2. View All Contacts \n";
 	cout<<"\n3. Search Contacts \n";
@@ -728,9 +725,8 @@ int main(){
     if(root == NULL){
         cout << "No contacts available!\n";
     } else {
-        cout << "\n--- Contacts (Alphabetical Order) ---\n";
+        cout << "\nContacts in alphabetical order \n";
         inorderBST(root);
-        cout << "--------------------------------------\n";
     }
     }
     else if (choice == 8) {
@@ -745,7 +741,7 @@ int main(){
 	}
     else if (choice == 11) {
         cout<<"Existing program!!!\n"<<endl;
-		saveContactsToFile();//will save contacts before exit
+		saveContactsToFile();// will save contacts before exit
     }
 
 	else{
